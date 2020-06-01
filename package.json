@@ -1,6 +1,6 @@
 {
   "name": "typeracer-box",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Update a gist to contain your latest Typeracer races",
   "main": "index.js",
   "repository": "https://github.com/tobimori/typeracer-box.git",

@@ -36,13 +36,13 @@ async function main () {
   }
 
   const lines = [
-    `⌨️ ${data.name} | Best Race: ${Math.round(data.tstats.bestGameWpm)} WPM | Recent Average Ø ${Math.round(data.tstats.recentAvgWpm)} WPM`,
-    'Recent races'
+    `${data.tstats.cg} Games played | ${data.tstats.gamesWon} Games won | 👑 ${Math.round(data.tstats.bestGameWpm)} WPM | ø ${Math.round(data.tstats.wpm)} WPM`,
+    `―― Recent races (Average ø ${Math.round(data.tstats.recentAvgWpm)} WPM)`
   ]
 
   for (let i = 0; i < data.tstats.recentScores.length; i++) {
     const wpm = Math.round(data.tstats.recentScores[i])
-    const chart = generateBarChart(data.tstats.recentScores[i] * 100 / data.tstats.bestGameWpm, 40)
+    const chart = generateBarChart(data.tstats.recentScores[i] * 100 / data.tstats.bestGameWpm, 35)
 
     lines.push([
       chart,
@@ -56,7 +56,7 @@ async function main () {
       gist_id: gistId,
       files: {
         [filename]: {
-          filename: '⌨️ TypeRacer statistics',
+          filename: `⌨️ TypeRacer | Statistics of ${username}`,
           content: lines.join('\n')
         }
       }
