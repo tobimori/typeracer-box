@@ -1,0 +1,11 @@
+name: typeracer-box
+author: Tobias Möritz
+description: GitHub Action for updating a pinned gist to contain your latest Typeracer races
+
+runs:
+  using: node12
+  main: ./index.js
+
+branding:
+  icon: type
+  color: blue
