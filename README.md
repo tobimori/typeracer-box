@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://gist.github.com/tobimori/7e2988d6bb7d17671e1874eda4601a8d">
-    <img src="banner.png" alt="TypeRacer + GitHub Gist">
+    <img src="banner.png" width="500" alt="TypeRacer + GitHub Gist">
   </a>
 </p>
 <p align="center">
