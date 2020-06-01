@@ -1,0 +1,17 @@
+{
+  "name": "typeracer-box",
+  "version": "1.0.0",
+  "description": "Update a gist to contain your latest Typeracer races",
+  "main": "index.js",
+  "repository": "https://github.com/tobimori/typeracer-box.git",
+  "author": "Tobias Möritz <tobias@moeritz.cc> (https://moeritz.io)",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "@octokit/rest": "^17.9.2",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0"
+  }
+}
