@@ -42,11 +42,12 @@ async function main () {
 
   for (let i = 0; i < data.tstats.recentScores.length; i++) {
     const wpm = Math.round(data.tstats.recentScores[i])
+    const chart = generateBarChart(data.tstats.recentScores[i] * 100 / data.tstats.bestGameWpm, 40)
 
     lines.push([
-      generateBarChart(data.tstats.recentScores[i] * 100 / data.tstats.bestGameWpm, 35),
-      `${wpm} WPM`.padStart(15)
-    ].join(' '))
+      chart,
+      `${wpm} WPM`.padStart(lines[0].length - chart.length)
+    ].join(''))
   }
 
   try {
@@ -55,7 +56,7 @@ async function main () {
       gist_id: gistId,
       files: {
         [filename]: {
-          filename: '⌨️ Recent TypeRacer Races',
+          filename: '⌨️ TypeRacer statistics',
           content: lines.join('\n')
         }
       }
