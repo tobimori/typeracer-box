@@ -35,32 +35,40 @@ async function main () {
     console.error(`typeracer-box ran into an issue getting your Gist:\n${error}`)
   }
 
-  const lines = [
+  let lines = [
     `${data.tstats.cg} Games played | ${data.tstats.gamesWon} Games won | 👑 ${Math.round(data.tstats.bestGameWpm)} WPM | ø ${Math.round(data.tstats.wpm)} WPM`,
     `―― Recent races (Average ø ${Math.round(data.tstats.recentAvgWpm)} WPM)`
   ]
+
+  const races = []
 
   for (let i = 0; i < data.tstats.recentScores.length; i++) {
     const wpm = Math.round(data.tstats.recentScores[i])
     const chart = generateBarChart(data.tstats.recentScores[i] * 100 / data.tstats.bestGameWpm, 35)
 
-    lines.push([
+    races.unshift([
       chart,
       `${wpm} WPM`.padStart(lines[0].length - chart.length)
     ].join(''))
   }
 
+  lines = lines.concat(races)
+
   try {
     const filename = Object.keys(gist.data.files)[0]
-    await octokit.gists.update({
-      gist_id: gistId,
-      files: {
-        [filename]: {
-          filename: `⌨️ TypeRacer | Statistics of ${username}`,
-          content: lines.join('\n')
+    const previousGist = await octokit.gists.get({ gist_id: gistId })
+    if (previousGist.data.files[`⌨️ TypeRacer | Statistics of ${username}`].content !== lines.join('\n')) {
+      console.log('updating gist as it is different from the one found online...')
+      await octokit.gists.update({
+        gist_id: gistId,
+        files: {
+          [filename]: {
+            filename: `⌨️ TypeRacer | Statistics of ${username}`,
+            content: lines.join('\n')
+          }
         }
-      }
-    })
+      })
+    }
   } catch (error) {
     console.error(`Unable to update gist\n${error}`)
   }
