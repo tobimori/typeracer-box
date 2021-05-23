@@ -1,7 +1,7 @@
 name: Update gist with TypeRacer stats
 on:
   schedule:
-    - cron: "0 * * * *" # hourly
+    - cron: "0 0 * * *" # hourly
   push:
     branches: master # on push
 jobs:
